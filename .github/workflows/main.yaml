@@ -2,6 +2,7 @@ on:
   pull_request:
     branches:
       main
+  workflow_dispatch:
 env:
   DOCKER_IMAGE_TAG: ${{ github.ref == 'refs/heads/master' && 'prod-' || 'dev-' }}${{ github.sha }}
   GITHUB_REGISTRY: ghcr.io
