@@ -84,7 +84,7 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ${{ env.GITHUB_REGISTRY }}
-          username: ${{ github.actor }}
+          username: stelllarce
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push Docker image 🐳
         uses: docker/build-push-action@v3
