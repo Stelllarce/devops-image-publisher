@@ -19,7 +19,7 @@ def upload_image():
     if not image:
         return jsonify({"error": "No image provided"}), 400
     images.append(image)
-    return jsonify({"message": "Image uploaded successfully!", 
+    return jsonify({"message": "Image uploaded successfully!",
                     "images": images}), 201
 
 
