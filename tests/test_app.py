@@ -1,6 +1,7 @@
 import pytest
 from app.app import app
 
+
 def test_upload_image():
     with app.test_client() as client:
         data = {
@@ -9,6 +10,7 @@ def test_upload_image():
         response = client.post('/images', data=data, content_type='multipart/form-data')
         assert response.status_code == 200
         assert response.json['message'] == "Image uploaded successfully!"
+
 
 def test_get_images():
     with app.test_client() as client:

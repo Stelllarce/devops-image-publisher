@@ -1,7 +1,9 @@
 from sqlalchemy import Column, Integer, String, LargeBinary
 from sqlalchemy.ext.declarative import declarative_base
 
+
 Base = declarative_base()
+
 
 class Image(Base):
     __tablename__ = 'images'

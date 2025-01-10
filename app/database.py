@@ -2,7 +2,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from app.models import Base
 
-DATABASE_URL = "jdbc:db2://62.44.108.24:50000/SAMPLE:currentSchema=FN24_2MI0700130"
+DATABASE_URL = "jdbc:db2://62.44.108.24:50000/SAMPLE \
+                :currentSchema=FN24_2MI0700130"
 DB_USER = "db2admin"
 DB_PASSWORD = "db2admin"
 
