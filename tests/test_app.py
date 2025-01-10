@@ -13,7 +13,8 @@ def test_upload_image(client):
     data = {
         'file': (io.BytesIO(b"test image data"), "test_image.jpg")
     }
-    response = client.post('/images', data=data, content_type='multipart/form-data')
+    response = client.post('/images', data=data,
+                           content_type='multipart/form-data')
     assert response.status_code == 200
     assert response.json['message'] == "Image uploaded successfully!"
 
