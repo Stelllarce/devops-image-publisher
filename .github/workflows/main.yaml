@@ -92,7 +92,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ${{ env.GITHUB_REGISTRY }}/${{ env.GITHUB_REPOSITORY }}:${{ env.DOCKER_IMAGE_TAG }}
+          tags: ${{ env.GITHUB_REGISTRY }}/stelllarce/devops-image-publisher:dev-${{ github.sha }}
 
   scan-docker-image:
     permissions:
