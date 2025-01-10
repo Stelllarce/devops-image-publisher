@@ -50,7 +50,9 @@ jobs:
       - name: Install Coverage
         run: pip install coverage 
       - name: Generate Coverage Report
-        run: coverage xml
+        run: |
+          coverage run -m pytest tests/
+          coverage xml
       - name: Upload Test Coverage
         uses: actions/upload-artifact@v3
         with:
