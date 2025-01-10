@@ -13,14 +13,17 @@ spec:
         app: image-publisher
     spec:
       containers:
-      - name: image-publisher
-        image: ghcr.io/stelllarce/image-publisher:latest
-        ports:
-        - containerPort: 5000
-        env:
-        - name: DATABASE_URL
-          value: "jdbc:db2://62.44.108.24:50000/SAMPLE:currentSchema=FN24_2MI0700130"
-        - name: DB_USER
-          value: "db2admin"
-        - name: DB_PASSWORD
-          value: "db2admin"
+        - name: image-publisher
+          image: ghcr.io/stelllarce/image-publisher:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: flask-secrets
+                  key: DATABASE_URL
+            - name: DB_USER
+              value: "postgresADMIN"
+            - name: DB_PASSWORD
+              value: "nyzgyq-vyNxon-nynro1"
