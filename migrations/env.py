@@ -1,5 +1,4 @@
 from logging.config import fileConfig
-from sqlalchemy import engine_from_config, pool
 from alembic import context
 from app.models import Base
 from app.database import engine
@@ -22,5 +21,6 @@ def run_migrations_online():
 
         with context.begin_transaction():
             context.run_migrations()
+
 
 run_migrations_online()
