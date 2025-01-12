@@ -1,11 +1,19 @@
+import io
 import pytest
-from app.app import app
+from app.app import app, db
 
 
 @pytest.fixture
 def client():
+    app.config['TESTING'] = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
     with app.test_client() as client:
+        with app.app_context():
+            db.create_all()
         yield client
+        with app.app_context():
+            db.session.remove()
+            db.drop_all()
 
 
 def test_home(client):
@@ -15,14 +23,16 @@ def test_home(client):
 
 
 def test_upload_image(client):
-    response = client.post('/images', json={"image": "image1.png"})
-    assert response.status_code == 201
-    assert response.json['message'] == "Image uploaded successfully!"
-    assert "image1.png" in response.json['images']
+    data = {
+        'file': (io.BytesIO(b"dummy file content"), 'test_image.png')
+    }
+    response = client.post('/upload', data=data, content_type='multipart/form-data')
+    assert response.status_code == 200
+    assert response.json['message'] == "File uploaded successfully"
+    assert response.json['s3_url'].endswith('test_image.png')
 
 
 def test_get_images(client):
-    client.post('/images', json={"image": "image2.png"})
     response = client.get('/images')
     assert response.status_code == 200
-    assert "image2.png" in response.json['images']
+    assert "images" in response.json['images']
