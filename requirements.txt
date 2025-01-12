@@ -23,5 +23,6 @@ SQLAlchemy==2.0.37
 tomli==2.2.1
 typing_extensions==4.12.2
 urllib3==1.26.20
-Werkzeug==2.3.2
+Werkzeug==2.3.3
 zipp==3.21.0
+moto~=5.0.26
