@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: image-publisher
-        image: ghcr.io/stelllarce/image-publisher:latest
+        image: devops-image-publisher:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 5000
         env:
